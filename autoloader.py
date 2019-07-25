@@ -27,8 +27,9 @@ def list_saves():
     return saves
 
 def upload_save(file):
-    file_name = file.filename
     try:
+        file_name = file.filename
+        file.save(file_name)
         response = S3_CLIENT.upload_file(Key=file_name, Bucket=BOTO_S3_BUCKET, Filename=file_name)
     except ClientError as e:
         logging.error(e)
@@ -50,7 +51,6 @@ def upload():
     if not request.files:
         print('no files found {}'.format(request))
     else:
-        print('files {}'.format(request.files))
         upload_save(request.files['file'])
     return redirect(url_for('success'))
 
