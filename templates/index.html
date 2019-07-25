@@ -8,7 +8,7 @@
     <h1> The Save File Transfer Project </h1>
     {% if saves %}
       {% for save in saves %}
-        <p>{{ save }}</p>
+        <p><a href="https://se-saves.s3-us-west-1.amazonaws.com/{{save}}" id="id-{{save}}">{{ save }}</a></p>
       {% endfor %}
     {% endif %}
 
