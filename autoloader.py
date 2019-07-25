@@ -26,18 +26,16 @@ def list_saves():
     print('returning {}, length: {}'.format(saves, len(saves)))
     return saves
 
-def upload_save(files):
-    print(files)
+def upload_save(file):
+    file_name = file.filename
     try:
-        print('saving')
-        # response = S3_CLIENT.upload_file(Key=archive, Bucket=BOTO_S3_BUCKET, Filename=filename)
+        response = S3_CLIENT.upload_file(Key=file_name, Bucket=BOTO_S3_BUCKET, Filename=file_name)
     except ClientError as e:
         logging.error(e)
         print('Exception: {}'.format(e))
         return False
   
     return True
-
 
 @app.route('/success')
 def success():
