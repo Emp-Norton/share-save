@@ -3,22 +3,56 @@
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+    .link-text {
+      font-size: xx-large;
+    }
+    .primary-content {
+      display: flex;
+      background-color: white;
+      flex-direction: column;
+      align-items: center;
+      border: 2px solid grey;
+      border-radius: 35px;
+      width: 800px;
+      height: 500px;
+      margin: auto;
+      margin-top: 25px;
+    }
+    .secondary-content {
+      flex-direction: column;
+    }
+    .hr {
+      color: black;
+      height: 3px;
+      background-color: black;
+    }
+    </style>
   </head>
-  <body>
-    <h1> The Save File Transfer Project </h1>
-    {% if saves %}
-      {% for save in saves %}
-        <p><a href="https://se-saves.s3-us-west-1.amazonaws.com/{{save}}" id="id-{{save}}">{{ save }}</a></p>
-      {% endfor %}
-    {% endif %}
+  <body style="background-color:lightgrey">
+    <div class='primary-content'>
+      <h1 style="margin-top: 50px"> The Save File Transfer Project </h1><hr class='hr'>
+      {% if saves %}
+        {% for save in saves %}
+        <div class="secondary-content">
+          <a href="https://se-saves.s3-us-west-1.amazonaws.com/{{save}}" id="id-{{save}}" class="item link-text">
+            <div class="content">
+              <i class="right triangle icon"></i>{{save}}
+            </div>
+          </a>
+         
+        {% endfor %}
+      {% endif %}
 
-    <div>
-      <h4>Drag &amp; Drop an image onto this page to save it.</h4>
-      <form id="upload-file" method="post" enctype="multipart/form-data">
-        <input class="ui primary button" type=file name=file>
-      </form>
+      <div>
+        <h4>Drag &amp; Drop a file to save it.</h4>
+        <form id="upload-file" method="post" enctype="multipart/form-data">
+          <input type=file name=file>
+        </form>
+      </div>
     </div>
-  </body>
+  </body> 
   <script>
     $('html')
         .on('dragover', function(e) {e.preventDefault(); return false;})
