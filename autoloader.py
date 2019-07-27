@@ -1,5 +1,6 @@
 import logging
 import zipfile
+import os
 
 from flask import Flask, request, render_template, redirect, url_for
 from envs import aws_secret, aws_access
@@ -8,6 +9,7 @@ import boto3
 from botocore.exceptions import ClientError
 
 app = Flask(__name__)
+PORT = int(os.environ.get('PORT'))
 
 BOTO_S3_BUCKET = 'se-saves'
 S3_CLIENT = boto3.client('s3', aws_access_key_id=aws_access, aws_secret_access_key=aws_secret)
@@ -65,4 +67,4 @@ def respond():
 
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', debug=True)
+    app.run(host='0.0.0.0', port=PORT, debug=True)
