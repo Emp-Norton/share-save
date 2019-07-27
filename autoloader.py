@@ -7,7 +7,7 @@ from envs import aws_secret, aws_access
 import boto3
 from botocore.exceptions import ClientError
 
-app = Flask(__name__)
+app = Flask()
 
 BOTO_S3_BUCKET = 'se-saves'
 S3_CLIENT = boto3.client('s3', aws_access_key_id=aws_access, aws_secret_access_key=aws_secret)
@@ -21,7 +21,7 @@ def list_saves():
     except ClientError as e:
         logging.error(e)
         print('Exception: {}'.format(e))
-        return False
+        return False 
 
     print('returning {}, length: {}'.format(saves, len(saves)))
     return saves
@@ -65,4 +65,4 @@ def respond():
 
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=3010, debug=True)
+    app.run(host='0.0.0.0', port=5000, debug=True)
