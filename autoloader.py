@@ -9,7 +9,8 @@ import boto3
 from botocore.exceptions import ClientError
 
 app = Flask(__name__)
-PORT = int(os.environ.get('PORT'))
+# PORT = int(os.environ.get('PORT')) # Heroku
+PORT = 3010 # Development
 
 BOTO_S3_BUCKET = 'se-saves'
 S3_CLIENT = boto3.client('s3', aws_access_key_id=aws_access, aws_secret_access_key=aws_secret)
