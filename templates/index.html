@@ -5,6 +5,11 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <style>
+    .hr {
+      color: black;
+      height: 3px;
+      background-color: black;
+    }
     .link-text {
       font-size: xx-large;
     }
@@ -23,10 +28,14 @@
     .secondary-content {
       flex-direction: column;
     }
-    .hr {
-      color: black;
-      height: 3px;
-      background-color: black;
+    .tertiary-content {
+      display: flex;
+      flex-direction: row;
+      margin-top: 25px;
+    }
+    .upload-selector {
+      display: flex;
+      flex-direction: column;
     }
     </style>
   </head>
@@ -45,11 +54,15 @@
         {% endfor %}
       {% endif %}
 
-      <div>
-        <h4>Drag &amp; Drop a file to save it.</h4>
-        <form id="upload-file" method="post" enctype="multipart/form-data">
-          <input type=file name=file>
-        </form>
+      <div class="tertiary-content">
+        <div class='upload-selector'>
+          <h4>Upload Save</h4>
+          <form id="upload-file" method="post" enctype="multipart/form-data">
+            <input type=file name=file>
+          </form>
+        </div>
+          <input type=password name='access' placeholder="password" style="height: 40px;">
+        </div>
       </div>
     </div>
   </body> 
